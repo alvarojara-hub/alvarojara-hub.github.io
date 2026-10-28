@@ -134,8 +134,11 @@
   .skills h3 { margin: 0 0 8px; font-family: var(--mono); font-weight: 500; font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
   .skills ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; font-family: var(--display); font-size: 1.05rem; }
 
-  /* Hobbies (pendiente) */
-  .pending { border: 1px dashed var(--line); border-radius: 12px; padding: 20px; color: var(--muted); font-size: .95rem; }
+  /* Hobbies */
+  .hobbies { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .hobby { border-top: 2px solid var(--accent); padding-top: 16px; display: grid; gap: 6px; align-content: start; }
+  .hobby h3 { margin: 0; font-family: var(--display); font-weight: 600; font-size: 1.2rem; }
+  .hobby p { color: var(--muted); font-size: .95rem; }
 
   /* Contacto */
   .contact { background: var(--accent); color: var(--bg); border-radius: 16px; padding: 32px; display: grid; gap: 16px; }
@@ -158,7 +161,7 @@
   }
   @media (max-width: 560px) {
     .timeline > li, .awards li { grid-template-columns: minmax(0, 1fr); gap: 6px; }
-    .studies, .skills { grid-template-columns: minmax(0, 1fr); }
+    .studies, .skills, .hobbies { grid-template-columns: minmax(0, 1fr); }
     .figures b { font-size: 1.7rem; }
     .contact { padding: 24px; }
   }
@@ -348,7 +351,11 @@
     <section id="hobbies">
       <p class="eyebrow">Fuera de la oficina</p>
       <h2>Hobbies</h2>
-      <p class="pending">Pendiente: esta sección se completa con tus hobbies.</p>
+      <div class="hobbies">
+        <div class="hobby"><h3>Deporte</h3><p>Gym y calistenia.</p></div>
+        <div class="hobby"><h3>Filosofía</h3><p>Leer y pensar sobre las grandes preguntas.</p></div>
+        <div class="hobby"><h3>Viajar</h3><p>Conocer nuevos lugares y culturas.</p></div>
+      </div>
     </section>
 
     <section id="contacto" class="contact">
