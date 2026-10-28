@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Álvaro Jara: 15 años lanzando y escalando negocios digitales en Latinoamérica.">
+<title>Álvaro Jara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: ficha lateral fija (identidad + contacto) y columna de lectura con línea de tiempo real */
+  :root {
+    --bg: #eef1f5;
+    --surface: #ffffff;
+    --ink: #121826;
+    --muted: #5a6478;
+    --line: #d5dbe5;
+    --accent: #2340d8;
+    --accent-soft: #dfe5ff;
+    --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d1220; --surface: #151c2e; --ink: #e8ecf5; --muted: #98a3ba;
+      --line: #263049; --accent: #8fa3ff; --accent-soft: #1f2a52; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0d1220; --surface: #151c2e; --ink: #e8ecf5; --muted: #98a3ba;
+    --line: #263049; --accent: #8fa3ff; --accent-soft: #1f2a52; color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg); color: var(--ink);
+    font-family: var(--body); font-size: 1.05rem; line-height: 1.6;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  a { color: var(--accent); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  .shell {
+    max-width: 1120px; margin: 0 auto; padding-block: 48px 72px;
+    display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 64px; align-items: start;
+  }
+
+  /* Ficha lateral */
+  .card {
+    position: sticky; top: calc(24px + env(safe-area-inset-top, 0px));
+    display: grid; gap: 20px;
+  }
+  .avatar {
+    width: 112px; aspect-ratio: 1; max-width: 100%; border-radius: 50%;
+    display: grid; place-items: center;
+    background: var(--accent); color: var(--bg);
+    font-family: var(--display); font-weight: 800; font-size: 2.6rem; letter-spacing: -.02em;
+  }
+  .card h1 {
+    margin: 0; font-family: var(--display); font-weight: 800;
+    font-size: clamp(2.4rem, 5vw, 3.2rem); line-height: .95; letter-spacing: -.035em; text-wrap: balance;
+  }
+  .role { margin: 0; font-size: 1.1rem; color: var(--muted); }
+  .meta { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; font-family: var(--mono); font-size: .8rem; color: var(--muted); }
+  .meta li { display: flex; gap: 10px; }
+  .meta span:first-child { min-width: 72px; text-transform: uppercase; letter-spacing: .08em; }
+  .status {
+    display: inline-flex; align-items: center; gap: 8px; justify-self: start;
+    padding: 6px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--ink);
+    font-family: var(--mono); font-size: .75rem;
+  }
+  .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .links a {
+    font-family: var(--display); font-weight: 600; font-size: .9rem; text-decoration: none;
+    padding: 8px 14px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink);
+  }
+  .links a:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Columna principal */
+  main { display: grid; gap: 72px; min-width: 0; }
+  section { display: grid; gap: 24px; }
+  .eyebrow {
+    margin: 0; font-family: var(--mono); font-size: .75rem; text-transform: uppercase;
+    letter-spacing: .14em; color: var(--accent);
+  }
+  h2 {
+    margin: 0; font-family: var(--display); font-weight: 800; font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+    letter-spacing: -.025em; line-height: 1.05; text-wrap: balance;
+  }
+  .lede { margin: 0; font-size: clamp(1.25rem, 2.2vw, 1.55rem); line-height: 1.45; max-width: 38ch; }
+  .lede em { color: var(--accent); font-style: italic; }
+  p { margin: 0; max-width: 65ch; }
+
+  .figures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; border-top: 1px solid var(--line); padding-top: 24px; }
+  .figures b { display: block; font-family: var(--display); font-weight: 800; font-size: 2.2rem; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+  .figures span { font-size: .9rem; color: var(--muted); }
+
+  /* Trayectoria: línea de tiempo */
+  .timeline { list-style: none; margin: 0; padding: 0; display: grid; }
+  .timeline > li {
+    display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px;
+    padding-block: 24px; border-top: 1px solid var(--line);
+  }
+  .timeline > li:last-child { border-bottom: 1px solid var(--line); }
+  .when { font-family: var(--mono); font-size: .8rem; color: var(--muted); padding-top: 4px; font-variant-numeric: tabular-nums; }
+  .when .now { color: var(--accent); }
+  .job { display: grid; gap: 10px; }
+  .job h3 { margin: 0; font-family: var(--display); font-weight: 600; font-size: 1.25rem; letter-spacing: -.01em; }
+  .job .org { margin: -8px 0 0; color: var(--muted); font-style: italic; }
+  .wins { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; max-width: 65ch; }
+  .wins li::marker { color: var(--accent); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 0; padding: 0; list-style: none; }
+  .tags li { font-family: var(--mono); font-size: .72rem; padding: 3px 8px; border-radius: 4px; background: var(--accent-soft); color: var(--ink); }
+
+  /* Estudios */
+  .studies { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .study { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: grid; gap: 4px; align-content: start; }
+  .study .when { padding: 0; }
+  .study h3 { margin: 4px 0 0; font-family: var(--display); font-weight: 600; font-size: 1.1rem; }
+  .study p { color: var(--muted); font-size: .95rem; }
+
+  /* Reconocimientos */
+  .awards { list-style: none; margin: 0; padding: 0; display: grid; border-top: 1px solid var(--line); }
+  .awards li { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 24px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+  .awards strong { font-family: var(--display); font-weight: 600; }
+
+  /* Habilidades */
+  .skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .skills h3 { margin: 0 0 8px; font-family: var(--mono); font-weight: 500; font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+  .skills ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; font-family: var(--display); font-size: 1.05rem; }
+
+  /* Hobbies (pendiente) */
+  .pending { border: 1px dashed var(--line); border-radius: 12px; padding: 20px; color: var(--muted); font-size: .95rem; }
+
+  /* Contacto */
+  .contact { background: var(--accent); color: var(--bg); border-radius: 16px; padding: 32px; display: grid; gap: 16px; }
+  .contact h2 { color: var(--bg); }
+  .contact .eyebrow { color: var(--bg); opacity: .8; }
+  .mail { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .mail code { font-family: var(--mono); font-size: 1rem; user-select: all; overflow-wrap: anywhere; }
+  .mail button, .mail a {
+    font-family: var(--display); font-weight: 600; font-size: .9rem; cursor: pointer; text-decoration: none;
+    padding: 8px 14px; border-radius: 8px; border: 1px solid currentColor; background: transparent; color: var(--bg);
+  }
+  .mail button:focus-visible, .mail a:focus-visible { outline-color: var(--bg); }
+
+  footer { font-family: var(--mono); font-size: .75rem; color: var(--muted); }
+
+  @media (max-width: 860px) {
+    .shell { grid-template-columns: minmax(0, 1fr); gap: 48px; padding-block: 32px 56px; }
+    .card { position: static; }
+    .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .timeline > li, .awards li { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+    .studies, .skills { grid-template-columns: minmax(0, 1fr); }
+    .figures b { font-size: 1.7rem; }
+    .contact { padding: 24px; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .card, main > section { animation: rise .6s ease-out both; }
+    main > section:nth-child(2) { animation-delay: .08s; }
+    main > section:nth-child(3) { animation-delay: .16s; }
+    @keyframes rise { from { transform: translateY(10px); } to { transform: none; } }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <aside class="card">
+    <div class="avatar" aria-hidden="true">ÁJ</div>
+    <h1>Álvaro Jara</h1>
+    <p class="role">Country Operations Manager en LGMG Chile</p>
+    <span class="status">Minería y tecnología</span>
+    <ul class="meta">
+      <li><span>Base</span><span>Providencia, Santiago</span></li>
+      <li><span>Idiomas</span><span>Español · Inglés · Portugués</span></li>
+      <li><span>Mercados</span><span>CL · PE · MX · AR</span></li>
+    </ul>
+    <nav class="links" aria-label="Perfiles">
+      <a href="https://www.linkedin.com/in/alvarojarachavarria" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </aside>
+
+  <main>
+    <section id="sobre-mi">
+      <p class="eyebrow">Sobre mí</p>
+      <p class="lede">15 años <em>lanzando y escalando negocios</em> digitales en Latinoamérica.</p>
+      <p>Trabajo con startups y desarrollo de negocios en Chile, México, Argentina y Perú. Mi experiencia está en fintech, e-commerce, ride-hailing y ventas B2B por internet. He levantado fondos públicos y privados para desarrollar startups y he recibido varios reconocimientos en la región. Hoy aplico esa experiencia a la operación de la industria minera.</p>
+      <div class="figures">
+        <div><b>15</b><span>años en startups y tecnología</span></div>
+        <div><b>US$40M</b><span>levantados para escalar Lana</span></div>
+        <div><b>4</b><span>países de Latinoamérica</span></div>
+      </div>
+    </section>
+
+    <section id="trayectoria">
+      <p class="eyebrow">Trayectoria</p>
+      <h2>Experiencia profesional</h2>
+      <ol class="timeline" reversed>
+        <li>
+          <div class="when">2026 — <span class="now">hoy</span></div>
+          <div class="job">
+            <h3>Country Operations Manager</h3>
+            <p class="org">LGMG Chile</p>
+            <p>Responsable de implementar y ejecutar todos los proyectos de la compañía desde el punto de vista operacional.</p>
+            <ul class="tags"><li>Operaciones</li><li>Minería</li></ul>
+          </div>
+        </li>
+        <li>
+          <div class="when">2022 — 2026</div>
+          <div class="job">
+            <h3>Manager Fintech Services</h3>
+            <p class="org">Mercado Pago · Mercado Libre</p>
+            <p>Lideré el negocio de tarjeta de débito en Chile, líder en volumen procesado dentro de la industria de prepago.</p>
+            <ul class="tags"><li>Fintech</li><li>Medios de pago</li></ul>
+          </div>
+        </li>
+        <li>
+          <div class="when">2018 — 2022</div>
+          <div class="job">
+            <h3>Country Manager</h3>
+            <p class="org">Lana, el spin-off fintech de Cabify</p>
+            <p>Parte del equipo fundador. Lancé Chile y Perú reportando al CEO y al directorio. Antes, como Business Development Manager, lancé la primera billetera digital y tarjeta de débito para trabajadores de la economía de plataformas.</p>
+            <ul class="wins">
+              <li>Lanzamiento del primer modelo BIN Sponsor junto a Prepago Los Héroes.</li>
+              <li>US$40M levantados para escalar el negocio.</li>
+              <li>Estrategia regulatoria local coordinada con Compliance, Riesgo y Control global.</li>
+            </ul>
+            <ul class="tags"><li>Fintech</li><li>Fundraising</li><li>Regulación</li></ul>
+          </div>
+        </li>
+        <li>
+          <div class="when">2017 — <span class="now">hoy</span></div>
+          <div class="job">
+            <h3>Inversionista y Director</h3>
+            <p class="org">La Arenga del Abuelo</p>
+            <p>Agencia de marketing enfocada en deportes, donde participo como inversionista desde su etapa temprana.</p>
+            <ul class="tags"><li>Inversión</li><li>Marketing deportivo</li></ul>
+          </div>
+        </li>
+        <li>
+          <div class="when">2016 — 2018</div>
+          <div class="job">
+            <h3>City Manager y City Performance</h3>
+            <p class="org">Cabify</p>
+            <p>Lancé las operaciones de Cabify en Valparaíso y luego en las regiones de Chile, mejorando los indicadores de eficiencia del negocio y la operación.</p>
+            <ul class="wins">
+              <li>Valparaíso fue la segunda ciudad de la compañía con EBITDA positivo, después de Madrid.</li>
+              <li>Crecimiento x8 en usuarios y x4 en conductores durante el primer año.</li>
+            </ul>
+            <ul class="tags"><li>Movilidad</li><li>Lanzamiento de mercados</li></ul>
+          </div>
+        </li>
+        <li>
+          <div class="when">2014 — 2016</div>
+          <div class="job">
+            <h3>Performance Manager South America</h3>
+            <p class="org">Linio · Rocket Internet</p>
+            <p>Desarrollé el área de performance en Chile, Ecuador, Panamá y Argentina, con una estrategia por categorías para ampliar el surtido. En Chile creé el área de BI y diseñé los incentivos comerciales.</p>
+            <ul class="wins">
+              <li>Crecimiento x7 en las categorías foco. Salud y Belleza superó a Falabella.com.</li>
+              <li>Ingresos x4 y usuarios activos x3 en seis meses.</li>
+            </ul>
+            <ul class="tags"><li>E-commerce</li><li>BI</li><li>Performance</li></ul>
+          </div>
+        </li>
+        <li>
+          <div class="when">2014 — 2015</div>
+          <div class="job">
+            <h3>Profesor Adjunto de Emprendimiento e Innovación</h3>
+            <p class="org">Universidad de Chile</p>
+            <p>Docencia en la Facultad de Ciencias Agronómicas.</p>
+            <ul class="tags"><li>Docencia</li><li>Emprendimiento</li></ul>
+          </div>
+        </li>
+        <li>
+          <div class="when">2010 — 2014</div>
+          <div class="job">
+            <h3>Fundador y Business Manager</h3>
+            <p class="org">Witoi.com</p>
+            <p>El primer marketplace de Latinoamérica donde cualquiera podía armar su propia tienda con distintos productos y categorías. Entre sus clientes estuvieron Coca-Cola, Movistar, Lippi, Kimberly-Clark y Watts.</p>
+            <ul class="wins">
+              <li>Lanzamiento de Vitaminwater antes que el retail: 2.400 unidades vendidas el primer mes y más de 1.000 tiendas en Witoi.</li>
+              <li>Primer sitio de suscripción de pañales en Chile, para Huggies.</li>
+              <li>Ventas web de Lippi cinco veces superiores a las de sus tiendas físicas.</li>
+            </ul>
+            <ul class="tags"><li>Emprendimiento</li><li>Marketplace</li></ul>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="estudios">
+      <p class="eyebrow">Estudios</p>
+      <h2>Formación</h2>
+      <div class="studies">
+        <article class="study">
+          <span class="when">2026 — 2027 · <span class="now">en curso</span></span>
+          <h3>Diplomado en Gestión Minera</h3>
+          <p>Pontificia Universidad Católica de Chile</p>
+        </article>
+        <article class="study">
+          <span class="when">2025</span>
+          <h3>Modelos de Riesgo de Crédito con Python</h3>
+          <p>Universidad Adolfo Ibáñez</p>
+        </article>
+        <article class="study">
+          <span class="when">2019 — 2020</span>
+          <h3>Data Analytics</h3>
+          <p>MIT Sloan School of Management</p>
+        </article>
+        <article class="study">
+          <span class="when">2006 — 2011</span>
+          <h3>Ingeniería Industrial</h3>
+          <p>Universidad de Chile</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="reconocimientos">
+      <p class="eyebrow">Reconocimientos</p>
+      <h2>Premios y selecciones</h2>
+      <ul class="awards">
+        <li><span class="when">Movistar</span><strong>Ganador de Movistar Innova (4AC)</strong></li>
+        <li><span class="when">2014</span><strong>Seleccionado en Start-Up Chile</strong></li>
+        <li><span class="when">2012</span><strong>Seleccionado en Start-Up Chile</strong></li>
+      </ul>
+    </section>
+
+    <section id="habilidades">
+      <p class="eyebrow">Habilidades</p>
+      <h2>Con qué trabajo</h2>
+      <div class="skills">
+        <div><h3>Negocio</h3><ul><li>Estrategia empresarial</li><li>Desarrollo de negocios</li><li>Emprendimiento</li><li>Levantamiento de capital</li></ul></div>
+        <div><h3>Industrias</h3><ul><li>Fintech y pagos</li><li>Comercio electrónico</li><li>Movilidad</li><li>Minería</li></ul></div>
+        <div><h3>Operación y datos</h3><ul><li>Lanzamiento de mercados</li><li>Performance y BI</li><li>Data analytics</li><li>Python</li></ul></div>
+      </div>
+    </section>
+
+    <section id="hobbies">
+      <p class="eyebrow">Fuera de la oficina</p>
+      <h2>Hobbies</h2>
+      <p class="pending">Pendiente: esta sección se completa con tus hobbies.</p>
+    </section>
+
+    <section id="contacto" class="contact">
+      <p class="eyebrow">Contacto</p>
+      <h2>¿Conversamos?</h2>
+      <div class="mail">
+        <code id="email">alvarojarachavarria@gmail.com</code>
+        <button type="button" id="copy">Copiar correo</button>
+        <a href="https://www.linkedin.com/in/alvarojarachavarria" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </section>
+
+    <footer>© 2026 Álvaro Jara</footer>
+  </main>
+</div>
+
+<script>
+  const btn = document.getElementById('copy');
+  btn.addEventListener('click', () => {
+    const text = document.getElementById('email').textContent;
+    navigator.clipboard.writeText(text).then(
+      () => { btn.textContent = 'Copiado'; setTimeout(() => btn.textContent = 'Copiar correo', 1800); },
+      () => { const r = document.createRange(); r.selectNodeContents(document.getElementById('email')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+    );
+  });
+</script>
+</body>
+</html>
